@@ -153,7 +153,7 @@ func TestIsValidHandler(t *testing.T) {
 			},
 			want:       nil,
 			wantErr:    true,
-			wantErrMsg: "error code: 400013, error type: DIParamError, error message: wrong handler type , must be func , actual error: wrong handler type , must be func ",
+			wantErrMsg: "wrong handler type , must be func ",
 		},
 		{
 			name: "1",
@@ -162,7 +162,7 @@ func TestIsValidHandler(t *testing.T) {
 			},
 			want:       nil,
 			wantErr:    true,
-			wantErrMsg: "error code: 400013, error type: DIParamError, error message: wrong handler , unsupported type , actual error: wrong handler , unsupported type ",
+			wantErrMsg: "wrong handler , unsupported type ",
 		},
 		{
 			name: "2",
@@ -171,7 +171,7 @@ func TestIsValidHandler(t *testing.T) {
 			},
 			want:       nil,
 			wantErr:    true,
-			wantErrMsg: "error code: 400013, error type: DIParamError, error message: wrong handler , unsupported type , actual error: wrong handler , unsupported type ",
+			wantErrMsg: "wrong handler , unsupported type ",
 		},
 		{
 			name: "3",
@@ -180,7 +180,7 @@ func TestIsValidHandler(t *testing.T) {
 			},
 			want:       nil,
 			wantErr:    true,
-			wantErrMsg: "error code: 400013, error type: DIParamError, error message: wrong handler , unsupported type , actual error: wrong handler , unsupported type ",
+			wantErrMsg: "wrong handler , unsupported type ",
 		},
 		{
 			name: "3",
@@ -201,7 +201,7 @@ func TestIsValidHandler(t *testing.T) {
 				}),
 			},
 			wantErr:    true,
-			wantErrMsg: "error code: 400013, error type: DIParamError, error message: wrong handler , interface only support context, actual error: wrong handler , interface only support context",
+			wantErrMsg: "wrong handler , interface only support context",
 		},
 		{
 			name: "4",
