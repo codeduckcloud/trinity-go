@@ -219,7 +219,6 @@ func DIHandler(c *container.Container, instanceName container.InstanceName, func
 }
 
 func (t *trinity) ServeHTTP(ctx context.Context, addr ...string) error {
-
 	address := ":http"
 	if len(addr) > 0 {
 		address = addr[0]
