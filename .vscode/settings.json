@@ -1,12 +1,15 @@
 {
     "cSpell.words": [
+        "codeduckcloud",
         "Debugf",
         "Debugln",
         "Errorln",
         "Infof",
         "Infoln",
+        "jaeger",
         "logrus",
         "logx",
+        "opentracing",
         "sirupsen",
         "Warnf",
         "Warningf",

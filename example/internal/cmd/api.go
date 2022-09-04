@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"trinity-example/internal/consts"
+	"trinity-example/internal/controller"
 
 	"github.com/codeduckcloud/trinity-go"
 	"github.com/codeduckcloud/trinity-go/core/logx"
@@ -76,5 +77,9 @@ func RunAPI(cmd *cobra.Command, args []string) {
 		MinLogLevel: logrus.TraceLevel,
 	}))
 	t := trinity.New(rootCtx)
-	t.ServeHTTP(":3000")
+	t.Get("/benchmark/simple_raw", controller.SimpleRaw)
+	logx.FromCtx(rootCtx).Infof("router register handler: %-6s %-30s => %v ", "GET", "/benchmark/simple_raw", "SimpleRaw")
+	t.Get("/benchmark/simple_raw/{id}", controller.PathParamRaw)
+	logx.FromCtx(rootCtx).Infof("router register handler: %-6s %-30s => %v ", "GET", "/benchmark/path_param_raw/{id}", "SimpleRaw")
+	t.ServeHTTP(rootCtx, ":3000")
 }

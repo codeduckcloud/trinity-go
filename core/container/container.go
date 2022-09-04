@@ -4,7 +4,8 @@ import (
 	"context"
 	"reflect"
 	"sync"
-	"trinity/core/logx"
+
+	"github.com/codeduckcloud/trinity-go/core/logx"
 )
 
 type Config struct {
@@ -209,4 +210,8 @@ func (s *Container) getAutoWireTag(obj interface{}, index int) bool {
 		return v
 	}
 	return s.c.AutoWire
+}
+
+func (s *Container) GetInstanceType() InstanceType {
+	return s.c.InstanceType
 }

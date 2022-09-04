@@ -4,7 +4,8 @@ import (
 	"context"
 	"fmt"
 	"reflect"
-	"trinity/core/logx"
+
+	"github.com/codeduckcloud/trinity-go/core/logx"
 )
 
 // DiSelfCheck

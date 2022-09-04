@@ -1,7 +1,7 @@
 package container
 
 import (
-	"trinity/core/logx"
+	"github.com/codeduckcloud/trinity-go/core/logx"
 )
 
 var (
