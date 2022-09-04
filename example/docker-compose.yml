@@ -1,0 +1,18 @@
+version: "3.5"
+networks:
+  trinity_example_net:
+services:
+  fluent:
+    image: fluent/fluentd:v1.4.2-debian-1.0
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+      - ./fluentd/log:/var/log
+    ports:
+      - 24224:24224
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+    networks:
+      - trinity_example_net
