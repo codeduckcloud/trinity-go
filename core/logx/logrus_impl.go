@@ -107,6 +107,32 @@ func (l logrusImpl) Fatalf(format string, args ...interface{}) {
 func (l logrusImpl) Panicf(format string, args ...interface{}) {
 	l.l.Panicf(format, args...)
 }
+func (l logrusImpl) Printf(format string, args ...interface{}) {
+	l.l.Printf(format, args...)
+}
+func (l logrusImpl) Tracef(format string, args ...interface{}) {
+	l.l.Tracef(format, args...)
+}
+func (l logrusImpl) Logf(logLevel Level, format string, args ...interface{}) {
+	switch logLevel {
+	case PanicLevel:
+		l.Panicf(format, args...)
+	case FatalLevel:
+		l.Fatalf(format, args...)
+	case ErrorLevel:
+		l.Errorf(format, args...)
+	case WarnLevel:
+		l.Warnf(format, args...)
+	case InfoLevel:
+		l.Infof(format, args...)
+	case DebugLevel:
+		l.Debugf(format, args...)
+	case TraceLevel:
+		l.Tracef(format, args...)
+	default:
+		l.Infof(format, args...)
+	}
+}
 
 func (l logrusImpl) Debug(args ...interface{}) {
 	l.l.Debug(args...)
@@ -126,6 +152,33 @@ func (l logrusImpl) Fatal(args ...interface{}) {
 func (l logrusImpl) Panic(args ...interface{}) {
 	l.l.Panic(args...)
 }
+func (l logrusImpl) Trace(args ...interface{}) {
+	l.l.Trace(args...)
+}
+func (l logrusImpl) Print(args ...interface{}) {
+	l.l.Print(args...)
+}
+func (l logrusImpl) Log(logLevel Level, args ...interface{}) {
+	switch logLevel {
+	case PanicLevel:
+		l.Panic(args...)
+	case FatalLevel:
+		l.Fatal(args...)
+	case ErrorLevel:
+		l.Error(args...)
+	case WarnLevel:
+		l.Warn(args...)
+	case InfoLevel:
+		l.Info(args...)
+	case DebugLevel:
+		l.Debug(args...)
+	case TraceLevel:
+		l.Trace(args...)
+	default:
+		l.Info(args...)
+	}
+}
+
 func (l logrusImpl) Debugln(args ...interface{}) {
 	l.l.Debugln(args...)
 }
@@ -143,4 +196,30 @@ func (l logrusImpl) Fatalln(args ...interface{}) {
 }
 func (l logrusImpl) Panicln(args ...interface{}) {
 	l.l.Panicln(args...)
+}
+func (l logrusImpl) Traceln(args ...interface{}) {
+	l.l.Traceln(args...)
+}
+func (l logrusImpl) Println(args ...interface{}) {
+	l.l.Println(args...)
+}
+func (l logrusImpl) Logln(logLevel Level, args ...interface{}) {
+	switch logLevel {
+	case PanicLevel:
+		l.Panicln(args...)
+	case FatalLevel:
+		l.Fatalln(args...)
+	case ErrorLevel:
+		l.Errorln(args...)
+	case WarnLevel:
+		l.Warnln(args...)
+	case InfoLevel:
+		l.Infoln(args...)
+	case DebugLevel:
+		l.Debugln(args...)
+	case TraceLevel:
+		l.Traceln(args...)
+	default:
+		l.Infoln(args...)
+	}
 }

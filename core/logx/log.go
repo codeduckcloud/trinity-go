@@ -10,6 +10,9 @@ type Logger interface {
 	Errorf(format string, args ...interface{})
 	Fatalf(format string, args ...interface{})
 	Panicf(format string, args ...interface{})
+	Printf(format string, args ...interface{})
+	Tracef(format string, args ...interface{})
+	Logf(logLevel Level, format string, args ...interface{})
 
 	Debug(args ...interface{})
 	Info(args ...interface{})
@@ -17,6 +20,9 @@ type Logger interface {
 	Error(args ...interface{})
 	Fatal(args ...interface{})
 	Panic(args ...interface{})
+	Print(args ...interface{})
+	Trace(args ...interface{})
+	Log(logLevel Level, args ...interface{})
 
 	Debugln(args ...interface{})
 	Infoln(args ...interface{})
@@ -24,4 +30,7 @@ type Logger interface {
 	Errorln(args ...interface{})
 	Fatalln(args ...interface{})
 	Panicln(args ...interface{})
+	Println(args ...interface{})
+	Traceln(args ...interface{})
+	Logln(logLevel Level, args ...interface{})
 }
