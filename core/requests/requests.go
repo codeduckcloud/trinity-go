@@ -82,7 +82,7 @@ func (r *HttpRequest) Call(ctx context.Context, method string, url string, heade
 	}
 
 	if resp.StatusCode < 200 || resp.StatusCode > 299 {
-		 data := ioutil.ReadAll(resbody)
+		 data,_ := ioutil.ReadAll(resbody)
 		return fmt.Errorf("actual http response code, actual: %v , error %v ", resp.StatusCode, string(data))
 	}
 
