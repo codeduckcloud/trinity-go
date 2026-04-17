@@ -8,9 +8,7 @@ import (
 
 func MD5Content(content []byte) (string, error) {
 	h := md5.New()
-	if _, err := h.Write(content); err != nil {
-		return "", err
-	}
+	h.Write(content)
 	return base64.StdEncoding.EncodeToString(h.Sum(nil)), nil
 }
 

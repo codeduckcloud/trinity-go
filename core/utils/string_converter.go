@@ -58,13 +58,13 @@ func StringConverter(word string, destVal *reflect.Value) error {
 		if err != nil {
 			return err
 		}
-		destVal.Set(reflect.ValueOf(int32(paramVal)))
+		destVal.Set(reflect.ValueOf(uint32(paramVal)))
 	case reflect.Uint16:
 		paramVal, err := strconv.ParseUint(word, 10, 16)
 		if err != nil {
 			return err
 		}
-		destVal.Set(reflect.ValueOf(int16(paramVal)))
+		destVal.Set(reflect.ValueOf(uint16(paramVal)))
 	case reflect.Float32:
 		paramVal, err := strconv.ParseFloat(word, 32)
 		if err != nil {
