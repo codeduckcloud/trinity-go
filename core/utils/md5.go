@@ -6,10 +6,10 @@ import (
 	"strconv"
 )
 
-func MD5Content(content []byte) (string, error) {
+func MD5Content(content []byte) string {
 	h := md5.New()
 	h.Write(content)
-	return base64.StdEncoding.EncodeToString(h.Sum(nil)), nil
+	return base64.StdEncoding.EncodeToString(h.Sum(nil))
 }
 
 func GenerateNonce() (string, error) {

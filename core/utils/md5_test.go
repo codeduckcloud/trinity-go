@@ -9,10 +9,9 @@ func TestMD5Content(t *testing.T) {
 		content []byte
 	}
 	tests := []struct {
-		name    string
-		args    args
-		want    string
-		wantErr bool
+		name string
+		args args
+		want string
 	}{
 		{
 			name: "1",
@@ -24,11 +23,7 @@ func TestMD5Content(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := MD5Content(tt.args.content)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("MD5Content() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
+			got := MD5Content(tt.args.content)
 			if got != tt.want {
 				t.Errorf("MD5Content() = %v, want %v", got, tt.want)
 			}
