@@ -139,3 +139,90 @@ func Test_StringConverter(t *testing.T) {
 func getStructFieldValue(dest interface{}, index int) reflect.Value {
 	return reflect.Indirect(reflect.ValueOf(dest)).Field(index)
 }
+
+func Test_StringConverter_Uints(t *testing.T) {
+	type Test struct {
+		U1 uint
+		U2 uint64
+		U3 uint32
+		U4 uint16
+	}
+	dest := &Test{}
+	{
+		val := getStructFieldValue(dest, 0)
+		assert.NoError(t, StringConverter("123", &val))
+		assert.Equal(t, uint(123), dest.U1)
+	}
+	{
+		val := getStructFieldValue(dest, 0)
+		err := StringConverter("abc", &val)
+		assert.Error(t, err)
+	}
+	{
+		val := getStructFieldValue(dest, 1)
+		assert.NoError(t, StringConverter("456", &val))
+		assert.Equal(t, uint64(456), dest.U2)
+	}
+	{
+		val := getStructFieldValue(dest, 1)
+		err := StringConverter("abc", &val)
+		assert.Error(t, err)
+	}
+	{
+		val := getStructFieldValue(dest, 2)
+		assert.NoError(t, StringConverter("789", &val))
+	}
+	{
+		val := getStructFieldValue(dest, 2)
+		err := StringConverter("abc", &val)
+		assert.Error(t, err)
+	}
+	{
+		val := getStructFieldValue(dest, 3)
+		assert.NoError(t, StringConverter("42", &val))
+	}
+	{
+		val := getStructFieldValue(dest, 3)
+		err := StringConverter("abc", &val)
+		assert.Error(t, err)
+	}
+}
+
+func Test_StringConverter_FloatParseErr(t *testing.T) {
+	type Test struct {
+		F32 float32
+		F64 float64
+	}
+	dest := &Test{}
+	{
+		val := getStructFieldValue(dest, 0)
+		err := StringConverter("abc", &val)
+		assert.Error(t, err)
+	}
+	{
+		val := getStructFieldValue(dest, 1)
+		err := StringConverter("abc", &val)
+		assert.Error(t, err)
+	}
+}
+
+func Test_StringConverter_PtrErr(t *testing.T) {
+	type Test struct {
+		S *int
+	}
+	dest := &Test{}
+	val := getStructFieldValue(dest, 0)
+	err := StringConverter("abc", &val)
+	assert.Error(t, err)
+}
+
+func Test_StringConverter_Unsupported(t *testing.T) {
+	type Test struct {
+		S []string
+	}
+	dest := &Test{}
+	val := getStructFieldValue(dest, 0)
+	err := StringConverter("abc", &val)
+	assert.Error(t, err)
+	assert.Contains(t, err.Error(), "unsupported type")
+}
